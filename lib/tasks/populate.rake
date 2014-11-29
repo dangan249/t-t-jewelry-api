@@ -20,15 +20,15 @@ namespace :db do
 					SimpleValue.populate 5..10 do |simple_value|
 						simple_value.product_id = product.id
 						simple_value.property_id = property.id
+						simple_value.value = Populator.words(1..5).titleize
 					end
 				else
 					ListValue.populate(2) do |list_value|
 						list_value.product_id = product.id
 						list_value.property_id = property.id
 						SimpleValue.populate 5 do |simple_value|
-							simple_value.product_id = product.id
-							simple_value.property_id = property.id
 							simple_value.list_value_id = list_value.id
+							simple_value.value = Populator.words(1..5).titleize
 						end
 					end
 				end
