@@ -19,8 +19,6 @@ development:
   encoding: unicode
   database: t-t-jewelry-api_development
   pool: 5
-  username: t-t-jewelry-api
-  password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -29,7 +27,8 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  host: localhost
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -48,13 +47,9 @@ test:
   encoding: unicode
   database: t-t-jewelry-api_test
   pool: 5
-  username: t-t-jewelry-api
-  password:
 
 production:
   adapter: postgresql
   encoding: unicode
   database: t-t-jewelry-api_production
   pool: 5
-  username: t-t-jewelry-api
-  password:
