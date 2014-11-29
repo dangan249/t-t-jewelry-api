@@ -16,6 +16,7 @@ namespace :db do
 
 			Property.populate 5..10 do |property|
 
+				property.name = Faker::Company.name
 				if rand(100) % 2 == 0
 					SimpleValue.populate 5..10 do |simple_value|
 						simple_value.product_id = product.id
@@ -23,12 +24,13 @@ namespace :db do
 						simple_value.value = Populator.words(1..5).titleize
 					end
 				else
-					ListValue.populate(2) do |list_value|
+
+					ListValue.populate(1) do |list_value|
 						list_value.product_id = product.id
 						list_value.property_id = property.id
-						SimpleValue.populate 5 do |simple_value|
-							simple_value.list_value_id = list_value.id
+						SimpleValue.populate(2) do |simple_value|
 							simple_value.value = Populator.words(1..5).titleize
+							simple_value.list_value_id = list_value.id
 						end
 					end
 				end
