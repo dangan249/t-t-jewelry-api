@@ -6,6 +6,17 @@ namespace :db do
 		[Product, Property, PropertyValue].each(&:delete_all)
 	end
 
+	desc "set up brand and category"
+	task :set_up_brand_and_category => :environment do
+		a = Category.create(name: 'watch')
+		b = Category.create(name: 'jewery')
+
+		a.brands.create(name: 'Rolex')
+		a.brands.create(name: 'Seiko')
+
+	end
+
+
 	desc "populate database with rolex watches"
 	task :populate_rolex => :environment do
 		require 'populator'
@@ -29,11 +40,12 @@ http://res.cloudinary.com/andang-info/image/upload/#{IMAGE_SIZE}/v1417281605/dow
 		count = 0
 		Product.populate 14 do |product|
 			product.name = Populator.words(1..1).titleize
-			product.brand = "Rolex"
+
+			product.brand_id = Brand.find_by_name('Rolex').id
+			product.category_id =  Category.find_by_name('watch').id
 
 			product.price = 500..1000
 			product.gender = ['male', 'female']
-			product.category = 'watch'
 			product.image_url = rolexes[count]
 			count += 1
 
@@ -70,11 +82,12 @@ http://res.cloudinary.com/andang-info/image/upload/#{IMAGE_SIZE}/v1417281605/dow
 		count = 0
 		Product.populate 14 do |product|
 			product.name = Populator.words(1..1).titleize
-			product.brand = "Seiko"
+
+			product.brand_id = Brand.find_by_name('Seiko').id
+			product.category_id =  Category.find_by_name('watch').id
 
 			product.price = 500..1000
 			product.gender = ['male', 'female']
-			product.category = 'watch'
 			product.image_url = seikos[count]
 			count += 1
 

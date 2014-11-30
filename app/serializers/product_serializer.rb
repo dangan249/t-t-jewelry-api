@@ -14,4 +14,11 @@ class ProductSerializer < ActiveModel::Serializer
     end
   end
 
+  def brand
+    object.brand.name
+  end
+
+  def category
+    object.category.name
+  end
 end
