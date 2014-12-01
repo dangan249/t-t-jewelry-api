@@ -20,4 +20,8 @@ class ProductsController < ApplicationController
 		meta[:total_pages] = products.total_pages
 		respond_with(products, meta: meta)
 	end
+
+	def show
+		respond_with(Product.find(params[:id].to_i))
+	end
 end

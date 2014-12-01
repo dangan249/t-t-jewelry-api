@@ -7,9 +7,17 @@ class ProductSerializer < ActiveModel::Serializer
     object.property_values.map do |prop_value|
 
       if prop_value.type == 'SimpleValue'
-        {prop_value.property.name => prop_value.value }
+        {
+            id: prop_value.id,
+            name: prop_value.property.name,
+            value: prop_value.value
+        }
       else
-        {prop_value.property.name => prop_value.values.pluck(:value)}
+        {
+            id: prop_value.id,
+            name: prop_value.property.name,
+            value: prop_value.values.pluck(:value)
+        }
       end
     end
   end
