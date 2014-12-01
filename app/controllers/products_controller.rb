@@ -22,6 +22,8 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		respond_with(Product.find(params[:id].to_i))
+		product = Product.find(params[:id].to_i)
+		meta = { related_products: product.category.products.where(gender: product.gender, brand_id: product.brand.id).where('id not in (?)',[product.id]).limit(4) }
+		respond_with(product, meta: meta)
 	end
 end
