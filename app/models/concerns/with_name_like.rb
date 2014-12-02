@@ -1,4 +1,4 @@
-module WithFieldLike
+module WithNameLike
 	extend ActiveSupport::Concern
 
 	module ClassMethods

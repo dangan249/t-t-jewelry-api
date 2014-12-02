@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-	include WithFieldLike
+	include WithNameLike
 
 	attr_accessible :name, :price, :gender, :brand, :category
 
