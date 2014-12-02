@@ -1,1 +1,2 @@
 == README
+Rails API for T-T-Jewelry Single Page App
