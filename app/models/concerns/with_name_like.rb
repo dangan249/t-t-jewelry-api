@@ -2,10 +2,9 @@ module WithNameLike
 	extend ActiveSupport::Concern
 
 	module ClassMethods
-		def with_name_like(query)
-			return where(nil) if query.blank?
-			self.where("LOWER(name) LIKE LOWER(?) AND LOWER((name)) != LOWER(?)",
-							      "%#{query}%", query)
+		def with_name_like(name)
+			return where(nil) if name.blank?
+			self.where("LOWER(name) LIKE LOWER(?)", "%#{name}%")
 		end
 	end
 end
